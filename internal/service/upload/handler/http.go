@@ -1,8 +1,10 @@
 package handler
 
 import (
+	"mime/multipart"
 	"net/http"
 	"path"
+	"sync"
 
 	"github.com/anonychun/siwi/internal/service/infra/config"
 	"github.com/anonychun/siwi/internal/service/infra/logger"
@@ -35,11 +37,21 @@ func (httpHandler *uploadHTTPHandler) Post() gin.HandlerFunc {
 			return
 		}
 
+		var wg sync.WaitGroup
+		clientIP := c.ClientIP()
+
 		files := form.File["files"]
 		for _, file := range files {
-			c.SaveUploadedFile(file, path.Join(config.Config().DataUpload, file.Filename))
+			wg.Add(1)
+			go func(file *multipart.FileHeader) {
+				logger.Info(clientIP, " uploading ", file.Filename)
+				c.SaveUploadedFile(file, path.Join(config.Config().DataUpload, file.Filename))
+				logger.Info(clientIP, " uploaded: ", file.Filename)
+				wg.Done()
+			}(file)
 		}
 
+		wg.Wait()
 		c.Redirect(http.StatusMovedPermanently, "/")
 	}
 }
