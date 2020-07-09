@@ -15,7 +15,7 @@ func NewRouter() *gin.Engine {
 
 	router.Use(gin.Recovery())
 	router.LoadHTMLGlob(path.Join(config.Config().Template, "*"))
-	router.MaxMultipartMemory = 10000 << 20
+	router.MaxMultipartMemory = 100000 << 20
 
 	uploadHandler := uploadHandler.NewUploadHTTPHandler()
 
