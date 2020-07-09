@@ -1,0 +1,9 @@
+app.level: release
+log.level: debug
+app.port: 4444
+template: template
+static: static
+data:
+    upload: data/upload
+    public: data/public
+docs: docs
