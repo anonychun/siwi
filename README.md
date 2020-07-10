@@ -1,7 +1,5 @@
 # SIWI (Share In Wireless Interaction)
 
-[![GoDoc Widget]][GoDoc] [![Travis Widget]][Travis]
-
 `SIWI` is a lightweight application for sharing files multiplatform between devices, building on top of HTTP that running on Linux, Mac, Windows. It's especially good at helping you sharing files without any physical device, uses a web browser for sharing interaction so you don't need to install any application on other devices. Just start one application on PC / Mac and you ready to go :)
 
 ## Features
