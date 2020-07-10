@@ -8,9 +8,9 @@
 * **Multiplatform** - Linux, Mac, Windows and uses browser so other platforms like a smartphone can use too
 * **Efficient** - just need to run on one device and another device as a client
 * **Concurrent** - when uploading multiple files at once, the files will be processed asynchronously so that there is no need to wait for the file to finish, to upload the next file
-* **Big files** the size can reach 100GB per upload
+* **Big files** - the size can reach 100GB per upload
 * **No external dependencies** - no need additional requirement
-* **Min cost** uses network/wireless to interaction, don't need to buy any physical device for communicating
+* **Min cost** - uses network/wireless to interaction, don't need to buy any physical device for communicating
 
 ## Download
 Choose your operating system and architecture [here](https://github.com/anonychun/siwi/releases)
@@ -18,13 +18,13 @@ Choose your operating system and architecture [here](https://github.com/anonychu
 ## Usage
 After downloading the file, extract and go inside `siwi` directory, before you run the program make sure that you connected to a network (no need data or internet access) and finally run the program
 
-*If you only have a PC and smartphone you can turn on the hotspot on the smartphone to connect to the PC or you can create `wlan` on PC and connect another device to it as well*
+*If you only have a PC and smartphone you can turn on the `hotspot` on the smartphone to connect to the PC or you can create `wlan` on PC and connect another device to it as well*
 
-**Windows**
+### Windows
 Double click `.exe` file to run the program
 ![Running on command prompt](asset/img/running_on_windows.png)
 
-**Linux or Mac**
+### Linux or Mac
 Open and running program on your terminal
 ![Running on terminal](asset/img/running_on_linux.png)
 
