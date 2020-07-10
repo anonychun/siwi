@@ -9,7 +9,7 @@
 * **Fast** - running on top of HTTP and compiled into native binary code
 * **Multiplatform** - Linux, Mac, Windows and uses browser so other platforms like a smartphone can use too
 * **Efficient** - just need to run on one device and another device as a client
-* **Concurrent** - when uploading multiple files at once, the file will be processed asynchronously so that there is no need to wait for the file to finish, to upload the next file
+* **Concurrent** - when uploading multiple files at once, the files will be processed asynchronously so that there is no need to wait for the file to finish, to upload the next file
 * **No external dependencies** - no need additional requirement
 * **Min cost** uses network/wireless to interaction, don't need to buy any physical device for communicating
 
@@ -20,8 +20,8 @@ Choose your operating system and architecture [here](https://github.com/anonychu
 After downloading the file, extract and go inside `siwi` directory, before you run the program make sure that you connected to a network (no need data or internet access) and finally run the program
 
 **Windows**
-Double click .exe file to run the program
-![Running on command prompt](./assets/img/proctor_components.jpg)
+Double click `.exe` file to run the program
+![Running on command prompt](asset/img/running_on_windows.png)
 
 **Linux or Mac**
 Open and running program on your terminal
@@ -39,7 +39,7 @@ To upload files just open client browser and go to given IP address on the appli
 When files upload the console will give you information about who is uploading, filename, time, etc
 ![Console on information](asset/img/console_information.png)
 
-To check file that already uploaded go to your application directory on `data/upload` and when you wanna share files to the client, put your files into `data/public` on the client browser instead of click `UPLOAD` button just click on `PUBLIC` button and you see all files will be shown
+To check files that already uploaded go to your application directory on `data/upload` and when you wanna share files to the client, put your files into `data/public` on the client browser instead of click `UPLOAD` button just click on `PUBLIC` button and you see all files will be shown
 
 ## Problem
 * When the application cannot start, check your network connection maybe you're not connected to any network
