@@ -8,6 +8,7 @@
 * **Multiplatform** - Linux, Mac, Windows and uses browser so other platforms like a smartphone can use too
 * **Efficient** - just need to run on one device and another device as a client
 * **Concurrent** - when uploading multiple files at once, the files will be processed asynchronously so that there is no need to wait for the file to finish, to upload the next file
+* **Big files** the size can reach 100GB per upload
 * **No external dependencies** - no need additional requirement
 * **Min cost** uses network/wireless to interaction, don't need to buy any physical device for communicating
 
@@ -16,6 +17,8 @@ Choose your operating system and architecture [here](https://github.com/anonychu
 
 ## Usage
 After downloading the file, extract and go inside `siwi` directory, before you run the program make sure that you connected to a network (no need data or internet access) and finally run the program
+
+*If you only have a PC and smartphone you can turn on the hotspot on the smartphone to connect to the PC or you can create `wlan` on PC and connect another device to it as well*
 
 **Windows**
 Double click `.exe` file to run the program
@@ -42,3 +45,4 @@ To check files that already uploaded go to your application directory on `data/u
 ## Problem
 * When the application cannot start, check your network connection maybe you're not connected to any network
 * Already connected but the application still cannot start, try to open `config.yaml` and change value of `app.port: 4444` to other port, you can replace `4444` to other four-length number value
+* If you still have a problem create `issues` on this repository so the problem can be fixed
