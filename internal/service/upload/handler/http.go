@@ -44,7 +44,6 @@ func (httpHandler *uploadHTTPHandler) Post() gin.HandlerFunc {
 		for _, file := range files {
 			wg.Add(1)
 			go func(file *multipart.FileHeader) {
-				logger.Info(clientIP, " uploading ", file.Filename)
 				c.SaveUploadedFile(file, path.Join(config.Config().DataUpload, file.Filename))
 				logger.Info(clientIP, " uploaded: ", file.Filename)
 				wg.Done()
