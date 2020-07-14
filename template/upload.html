@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width, user-scalable=yes" />
     <link rel="stylesheet" href="/static/css/normalize/normalize.min.css" />
     <link rel="stylesheet" href="/static/css/style.css" />
+    <link rel="stylesheet" href="/static/sweetalert/sweetalert2.min.css" />
   </head>
   <body>
     <h2>Share In Wireless Interaction</h2>
 
-    <form action="/upload" method="POST" enctype="multipart/form-data">
+    <form action="/upload" method="POST" enctype="multipart/form-data" id="uploadfile">
       <div class="file-drop-area">
         <span class="fake-btn">Choose files</span>
         <span class="file-msg">or drag and drop files here</span>
@@ -18,12 +19,13 @@
       </div>
 
       <div class="btn-area">
-        <button class="btn" type="submit">Upload</button>
+        <button class="btn" type="submit" id="file_upload">Upload</button>
         <a class="btn" href="public" target="_blank">Public</a>
       </div>
     </form>
 
     <script src="/static/js/jquery/jquery.min.js"></script>
     <script src="/static/js/script.js"></script>
+    <script src="/static/sweetalert/sweetalert2.min.js"></script>
   </body>
 </html>
