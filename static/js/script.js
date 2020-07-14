@@ -25,3 +25,59 @@ $fileInput.on("change", function () {
     $textContainer.text(filesCount + " files selected");
   }
 });
+
+// submit click
+$("#file_upload").click(function () {
+  var formData = new FormData();
+  var files = $("input[type=file]")[0].files;
+  $.each(files, function(key, file){
+    formData.append("upload_file", file);
+  });
+
+  Swal.fire({
+    title: '<i>Proses Upload</i>',
+    html:
+    `<div class="progress">
+        <div class="bar" style="width:0%">
+          <p class="percent">0%</p>
+        </div>
+      </div>`,
+    footer: '<a href>Batal</a>',
+    showConfirmButton: false,
+  })
+
+  $.ajax({
+    xhr: function () {
+      var xhr = new window.XMLHttpRequest();
+      xhr.upload.addEventListener(
+        "progress",
+        function (evt) {
+          if (evt.lengthComputable) {
+            var percentComplete = evt.loaded / evt.total;
+            percentComplete = parseInt(percentComplete * 100);
+            $(".bar").attr('style', `width:${percentComplete}%`); 
+            $(".percent").html(`${percentComplete}%`); 
+            if (percentComplete === 100) {
+            }
+          }
+        },
+        false
+      );
+      return xhr;
+    },
+    url: "upload",
+    type: "POST",
+    data: formData,
+    contentType: false,
+    processData: false,
+    success: function (result) {
+      Swal.fire({
+        title: 'Success',
+        text: "Upload file success!",
+        type: 'success',
+        showConfirmButton: false,
+      })
+      
+    },
+  });
+});

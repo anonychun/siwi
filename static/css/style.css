@@ -137,3 +137,60 @@ section {
   color: #226fbe;
 }
 
+
+/*progress bar*/
+#Batal{
+  padding: 5px 22px;
+  margin: 22px 0px;
+  width: 16%;
+  border: 1px solid #cccccc;
+  float: right;
+  border-radius: 5px;
+  color: #ffffff;
+  font-size: 10pt;
+  background: #022534;
+}
+.proses{
+  padding: 12px 12px 12px 12px;
+  background: #073042;
+  border-radius: 6px;
+  border: 1px solid #cccccc;
+  margin-top: 25px;
+  width:50%;
+}
+.proses h5{
+  margin: 10px 0px 10px 0px;
+  text-align: center;
+  color: #fff;
+  padding: 0px 0px 17px 0px;
+}
+.progress {
+  margin: 0px auto;
+  padding: 0;
+  width: 100%;
+  height: 30px;
+  overflow: hidden;
+  background: #e5e5e5;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px #9a9a9a7d;
+}
+
+.bar {
+  position:relative;
+  float:left;
+  min-width:1%;
+  height:100%;
+  background:cornflowerblue;
+}
+
+.percent {
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  margin:0;
+  font-family:tahoma,arial,helvetica;
+  font-size:12px;
+  color:white;
+}
+/*end progress bar*/
