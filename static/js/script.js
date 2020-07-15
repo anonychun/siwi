@@ -30,14 +30,14 @@ $("#uploadfile").on("submit", function (e) {
   var formData = new FormData(this);
 
   Swal.fire({
-    title: "<i>Proses Upload</i>",
+    title: "<i>Uploading</i>",
     html: `
       <div class="progress">
         <div class="bar" style="width:0%">
           <p class="percent">0%</p>
         </div>
       </div>`,
-    footer: "<a href>Batal</a>",
+    footer: "<a href>Cancel</a>",
     showConfirmButton: false,
   });
 
@@ -60,7 +60,7 @@ $("#uploadfile").on("submit", function (e) {
     success: function (data) {
       Swal.fire({
         title: "Success",
-        text: "Upload file success!",
+        text: "Files Uploaded Successfully!",
         type: "success",
         showConfirmButton: false,
       });
