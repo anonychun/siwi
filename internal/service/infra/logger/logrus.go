@@ -14,7 +14,7 @@ func Setup() {
 		return
 	}
 
-	logrus.SetFormatter(&logrus.JSONFormatter{})
+	logrus.SetFormatter(&logrus.TextFormatter{})
 	logrus.SetOutput(os.Stdout)
 
 	logLevel, err := logrus.ParseLevel(config.Config().LogLevel)
@@ -36,7 +36,7 @@ func AddHook(hook logrus.Hook) {
 }
 
 func Debug(args ...interface{}) {
-	logger.Debug(args...)
+	logrus.Debug(args...)
 }
 
 func Info(args ...interface{}) {
