@@ -26,13 +26,8 @@ $fileInput.on("change", function () {
   }
 });
 
-// submit click
-$("#file_upload").click(function () {
-  var formData = new FormData();
-  var ins = document.getElementById("files").files.length;
-  for (var x = 0; x < ins; i++) {
-    formData.append("files", document.getElementById("files").files[x]);
-  }
+$("#uploadfile").on("submit", function (e) {
+  var formData = new FormData(this);
 
   Swal.fire({
     title: "<i>Proses Upload</i>",
@@ -47,34 +42,40 @@ $("#file_upload").click(function () {
   });
 
   $.ajax({
-    xhr: function () {
-      var xhr = new window.XMLHttpRequest();
-      xhr.upload.addEventListener(
-        "progress",
-        function (evt) {
-          if (evt.lengthComputable) {
-            var percentComplete = evt.loaded / evt.total;
-            percentComplete = parseInt(percentComplete * 100);
-            $(".bar").attr("style", `width:${percentComplete}%`);
-            $(".percent").html(`${percentComplete}%`);
-          }
-        },
-        false
-      );
-      return xhr;
-    },
-    url: "upload",
     type: "POST",
+    url: "upload",
     data: formData,
+    cache: false,
     contentType: false,
     processData: false,
-    success: function (result) {
+
+    xhr: function () {
+      var myXhr = $.ajaxSettings.xhr();
+      if (myXhr.upload) {
+        myXhr.upload.addEventListener("progress", progress, false);
+      }
+      return myXhr;
+    },
+
+    success: function (data) {
       Swal.fire({
         title: "Success",
         text: "Upload file success!",
         type: "success",
-        showConfirmButton: true,
+        showConfirmButton: false,
       });
     },
   });
+
+  e.preventDefault();
 });
+
+function progress(e) {
+  if (e.lengthComputable) {
+    var max = e.total;
+    var current = e.loaded;
+    var percentage = (current * 100) / max;
+    $(".bar").attr("style", `width:${percentage}%`);
+    $(".percent").html(`${percentage.toFixed(2)}%`);
+  }
+}
