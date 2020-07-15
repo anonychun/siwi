@@ -31,7 +31,7 @@ $("#file_upload").click(function () {
   var formData = new FormData();
   var ins = document.getElementById("files").files.length;
   for (var x = 0; x < ins; i++) {
-    formData.append("files", document.getElementById("files").files[x])
+    formData.append("files", document.getElementById("files").files[x]);
   }
 
   Swal.fire({
