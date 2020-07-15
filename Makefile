@@ -11,13 +11,11 @@ CONFIG_LOCATION := $(SRC_DIR)
 
 $(@info $(shell mkdir -p $(OUT_DIR) $(BIN_DIR))
 
-dev: build run
-
 build:
 	go build -o $(BIN_DIR)/server $(SRC_DIR)/cmd/server/main.go
 
 run:
-	$(BIN_DIR)/server
+	go run $(SRC_DIR)/cmd/server/main.go
 
 compile:
 	GOOS=linux GOARCH=386 go build -o $(BIN_DIR)/siwi-lin32 $(SRC_DIR)/cmd/server/main.go
