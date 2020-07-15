@@ -29,22 +29,22 @@ $fileInput.on("change", function () {
 // submit click
 $("#file_upload").click(function () {
   var formData = new FormData();
-  var files = $("input[type=file]")[0].files;
-  $.each(files, function(key, file){
-    formData.append("upload_file", file);
-  });
+  var ins = document.getElementById("files").files.length;
+  for (var x = 0; x < ins; i++) {
+    formData.append("files", document.getElementById("files").files[x])
+  }
 
   Swal.fire({
-    title: '<i>Proses Upload</i>',
-    html:
-    `<div class="progress">
+    title: "<i>Proses Upload</i>",
+    html: `
+      <div class="progress">
         <div class="bar" style="width:0%">
           <p class="percent">0%</p>
         </div>
       </div>`,
-    footer: '<a href>Batal</a>',
+    footer: "<a href>Batal</a>",
     showConfirmButton: false,
-  })
+  });
 
   $.ajax({
     xhr: function () {
@@ -55,10 +55,8 @@ $("#file_upload").click(function () {
           if (evt.lengthComputable) {
             var percentComplete = evt.loaded / evt.total;
             percentComplete = parseInt(percentComplete * 100);
-            $(".bar").attr('style', `width:${percentComplete}%`); 
-            $(".percent").html(`${percentComplete}%`); 
-            if (percentComplete === 100) {
-            }
+            $(".bar").attr("style", `width:${percentComplete}%`);
+            $(".percent").html(`${percentComplete}%`);
           }
         },
         false
@@ -72,12 +70,11 @@ $("#file_upload").click(function () {
     processData: false,
     success: function (result) {
       Swal.fire({
-        title: 'Success',
+        title: "Success",
         text: "Upload file success!",
-        type: 'success',
-        showConfirmButton: false,
-      })
-      
+        type: "success",
+        showConfirmButton: true,
+      });
     },
   });
 });
