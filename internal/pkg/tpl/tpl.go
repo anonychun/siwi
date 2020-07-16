@@ -28,7 +28,6 @@ func LoadTemplate() (*template.Template, error) {
 		if err != nil {
 			return nil, err
 		}
-
 		tpl.New(name).Parse(tplString)
 	}
 
