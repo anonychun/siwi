@@ -2,7 +2,6 @@ package server
 
 import (
 	"net/http"
-	"path"
 
 	rice "github.com/GeertJohan/go.rice"
 	"github.com/anonychun/siwi/internal/pkg/tpl"
@@ -30,7 +29,7 @@ func NewRouter() (*gin.Engine, error) {
 	router.POST("/upload", uploadHandler.Post())
 
 	router.StaticFS("/public", http.Dir(config.Config().DataPublic))
-	router.StaticFS("/static", rice.MustFindBox(path.Join("../../../", config.Config().Static)).HTTPBox())
+	router.StaticFS("/static", rice.MustFindBox("../../../static").HTTPBox())
 
 	return router, nil
 }

@@ -3,17 +3,15 @@ package tpl
 import (
 	"html/template"
 	"os"
-	"path"
 	"strings"
 
 	rice "github.com/GeertJohan/go.rice"
-	"github.com/anonychun/siwi/internal/service/infra/config"
 )
 
 func LoadTemplate() (*template.Template, error) {
 	tpl := template.New("")
 
-	box, err := rice.FindBox(path.Join("../../../", config.Config().Template))
+	box, err := rice.FindBox("../../../template")
 	if err != nil {
 		return nil, err
 	}
@@ -37,8 +35,7 @@ func LoadTemplate() (*template.Template, error) {
 func findTemplates(box *rice.Box) ([]string, error) {
 	var files []string
 
-	root := "/"
-	err := box.Walk(root, func(path string, info os.FileInfo, err error) error {
+	err := box.Walk("", func(path string, info os.FileInfo, err error) error {
 		if strings.HasSuffix(path, ".html") {
 			files = append(files, path)
 		}

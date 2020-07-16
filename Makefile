@@ -19,7 +19,11 @@ build:
 run:
 	go run $(SRC_DIR)/cmd/server/main.go
 
-compile:
+embed:
+	cd $(SRC_DIR)/internal/pkg/tpl && rice embed-go
+	cd $(SRC_DIR)/internal/service/server && rice embed-go
+
+compile: embed
 	GOOS=linux GOARCH=386 go build -o $(BIN_DIR)/linux_i386/siwi $(SRC_DIR)/cmd/server/main.go
 	GOOS=linux GOARCH=amd64 go build -o $(BIN_DIR)/linux_x86_64/siwi $(SRC_DIR)/cmd/server/main.go
 	GOOS=darwin GOARCH=386 go build -o $(BIN_DIR)/darwin_i386/siwi $(SRC_DIR)/cmd/server/main.go
