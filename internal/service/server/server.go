@@ -15,7 +15,11 @@ import (
 func Start() error {
 	appPort := ":" + config.Config().AppPort
 
-	server := NewRouter()
+	server, err := NewRouter()
+	if err != nil {
+		return err
+	}
+
 	httpServer := &http.Server{
 		Addr:    appPort,
 		Handler: server,

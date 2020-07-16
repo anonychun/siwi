@@ -25,7 +25,7 @@ func NewUploadHTTPHandler() UploadHTTPHandler {
 
 func (httpHandler *uploadHTTPHandler) Get() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		c.HTML(http.StatusOK, "upload.html", nil)
+		c.HTML(http.StatusOK, "index.html", nil)
 	}
 }
 

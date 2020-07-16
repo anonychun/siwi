@@ -1,4 +1,4 @@
-app.level: release
+app.level: debug
 log.level: debug
 app.port: 4444
 template: template

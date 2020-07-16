@@ -8,7 +8,7 @@ import (
 	"github.com/spf13/viper"
 )
 
-func GetStringDefault(viper *viper.Viper, key string, defaultValue string) string {
+func getStringDefault(viper *viper.Viper, key string, defaultValue string) string {
 	viper.SetDefault(key, defaultValue)
 	return viper.GetString(key)
 }
@@ -25,7 +25,6 @@ type AppConfig struct {
 	Static     string
 	DataUpload string
 	DataPublic string
-	DocsPath   string
 }
 
 func load() AppConfig {
@@ -43,21 +42,17 @@ func load() AppConfig {
 		fang.AddConfigPath(value)
 	}
 
-	err := fang.ReadInConfig()
-	if err != nil {
-		panic(err.Error())
-	}
+	_ = fang.ReadInConfig()
 
 	appConfig := AppConfig{
 		viper:      fang,
-		AppLevel:   GetStringDefault(fang, "app.level", "debug"),
-		LogLevel:   GetStringDefault(fang, "log.level", "debug"),
-		AppPort:    GetStringDefault(fang, "app.port", "4444"),
-		Template:   fang.GetString("template"),
-		Static:     fang.GetString("static"),
-		DataUpload: fang.GetString("data.upload"),
-		DataPublic: fang.GetString("data.public"),
-		DocsPath:   fang.GetString("docs.path"),
+		AppLevel:   getStringDefault(fang, "app.level", "release"),
+		LogLevel:   getStringDefault(fang, "log.level", "debug"),
+		AppPort:    getStringDefault(fang, "app.port", "4444"),
+		Template:   getStringDefault(fang, "template", "template"),
+		Static:     getStringDefault(fang, "static", "static"),
+		DataUpload: getStringDefault(fang, "data.upload", "data/upload"),
+		DataPublic: getStringDefault(fang, "data.public", "data/public"),
 	}
 
 	return appConfig
