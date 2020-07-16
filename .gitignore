@@ -20,6 +20,9 @@ data/
 # Output directories
 _output/
 
+# Release directories
+release/
+
 # System
 .DS_Store
 dist/
