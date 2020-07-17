@@ -29,6 +29,7 @@ $fileInput.on("change", function () {
 $("#uploadfile").on("submit", function (e) {
   var formData = new FormData(this);
 
+  
   Swal.fire({
     title: "<i>Uploading</i>",
     html: `

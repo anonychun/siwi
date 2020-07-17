@@ -33,9 +33,9 @@ compile: embed
 
 release: compile
 	mkdir -p $(RELEASE_DIR)
-	zip -rj $(RELEASE_DIR)/siwi_$(VERSION)_linux_i386.zip $(BIN_DIR)/linux_i386/siwi
-	zip -rj $(RELEASE_DIR)/siwi_$(VERSION)_linux_x86_64.zip $(BIN_DIR)/linux_x86_64/siwi
-	zip -rj $(RELEASE_DIR)/siwi_$(VERSION)_darwin_i386.zip $(BIN_DIR)/darwin_i386/siwi
-	zip -rj $(RELEASE_DIR)/siwi_$(VERSION)_darwin_x86_64.zip $(BIN_DIR)/darwin_x86_64/siwi
-	zip -rj $(RELEASE_DIR)/siwi_$(VERSION)_windows_i386.zip $(BIN_DIR)/windows_i386/siwi.exe
-	zip -rj $(RELEASE_DIR)/siwi_$(VERSION)_windows_x86_64.zip $(BIN_DIR)/windows_x86_64/siwi.exe
+	zip -rjmgo $(RELEASE_DIR)/siwi_$(VERSION)_linux_i386.zip $(BIN_DIR)/linux_i386/siwi
+	zip -rjmgo $(RELEASE_DIR)/siwi_$(VERSION)_linux_x86_64.zip $(BIN_DIR)/linux_x86_64/siwi
+	zip -rjmgo $(RELEASE_DIR)/siwi_$(VERSION)_darwin_i386.zip $(BIN_DIR)/darwin_i386/siwi
+	zip -rjmgo $(RELEASE_DIR)/siwi_$(VERSION)_darwin_x86_64.zip $(BIN_DIR)/darwin_x86_64/siwi
+	zip -rjmgo $(RELEASE_DIR)/siwi_$(VERSION)_windows_i386.zip $(BIN_DIR)/windows_i386/siwi.exe
+	zip -rjmgo $(RELEASE_DIR)/siwi_$(VERSION)_windows_x86_64.zip $(BIN_DIR)/windows_x86_64/siwi.exe
