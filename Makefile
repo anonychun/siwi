@@ -9,7 +9,7 @@ BIN_DIR := $(OUT_DIR)/bin
 RELEASE_DIR := $(SRC_DIR)/release
 CONFIG_LOCATION := $(SRC_DIR)
 GO111MODULE := on
-VERSION := 1.1.0
+VERSION := 1.1.1
 
 $(@info $(shell mkdir -p $(OUT_DIR) $(BIN_DIR) $(RELEASE_DIR))
 
