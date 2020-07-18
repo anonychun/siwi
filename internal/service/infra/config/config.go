@@ -5,6 +5,7 @@ import (
 	"strings"
 	"sync"
 
+	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
 )
 
@@ -46,7 +47,7 @@ func load() AppConfig {
 
 	appConfig := AppConfig{
 		viper:      fang,
-		AppLevel:   getStringDefault(fang, "app.level", "release"),
+		AppLevel:   getStringDefault(fang, "app.level", gin.ReleaseMode),
 		LogLevel:   getStringDefault(fang, "log.level", "debug"),
 		AppPort:    getStringDefault(fang, "app.port", "4444"),
 		Template:   getStringDefault(fang, "template", "template"),

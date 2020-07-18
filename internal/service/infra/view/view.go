@@ -1,4 +1,4 @@
-package tpl
+package view
 
 import (
 	"html/template"
@@ -6,12 +6,25 @@ import (
 	"strings"
 
 	rice "github.com/GeertJohan/go.rice"
+	"github.com/gin-gonic/gin"
 )
 
-func LoadTemplate() (*template.Template, error) {
+type View interface {
+	LoadTemplate() (*template.Template, error)
+}
+
+type view struct {
+	router *gin.Engine
+}
+
+func NewView(router *gin.Engine) View {
+	return &view{router}
+}
+
+func (view *view) LoadTemplate() (*template.Template, error) {
 	tpl := template.New("")
 
-	box, err := rice.FindBox("../../../template")
+	box, err := rice.FindBox("../../../../template")
 	if err != nil {
 		return nil, err
 	}
@@ -28,6 +41,8 @@ func LoadTemplate() (*template.Template, error) {
 		}
 		tpl.New(name).Parse(tplString)
 	}
+
+	view.router.StaticFS("/static", rice.MustFindBox("../../../../static").HTTPBox())
 
 	return tpl, nil
 }

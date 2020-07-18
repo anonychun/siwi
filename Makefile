@@ -16,12 +16,12 @@ $(@info $(shell mkdir -p $(OUT_DIR) $(BIN_DIR) $(RELEASE_DIR))
 build:
 	go build -o $(BIN_DIR)/server $(SRC_DIR)/cmd/server/main.go
 
-run:
+run: embed
 	go run $(SRC_DIR)/cmd/server/main.go
 
 embed:
-	cd $(SRC_DIR)/internal/pkg/tpl && rice embed-go
-	cd $(SRC_DIR)/internal/service/server && rice embed-go
+	rm -f $(SRC_DIR)/internal/service/infra/view/rice-box.go
+	cd $(SRC_DIR)/internal/service/infra/view && rice embed-go
 
 compile: embed
 	GOOS=linux GOARCH=386 go build -o $(BIN_DIR)/linux_i386/siwi $(SRC_DIR)/cmd/server/main.go

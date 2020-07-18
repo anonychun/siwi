@@ -29,7 +29,6 @@ $fileInput.on("change", function () {
 $("#uploadfile").on("submit", function (e) {
   var formData = new FormData(this);
 
-  
   Swal.fire({
     title: "<i>Uploading</i>",
     html: `
@@ -60,7 +59,7 @@ $("#uploadfile").on("submit", function (e) {
     },
 
     success: function (data) {
-      // notifikasi success
+      // success notification
       Swal.fire({
         title: "Success",
         text: "Files Uploaded Successfully!",

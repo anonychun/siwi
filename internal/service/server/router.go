@@ -3,9 +3,8 @@ package server
 import (
 	"net/http"
 
-	rice "github.com/GeertJohan/go.rice"
-	"github.com/anonychun/siwi/internal/pkg/tpl"
 	"github.com/anonychun/siwi/internal/service/infra/config"
+	"github.com/anonychun/siwi/internal/service/infra/view"
 	uploadHandler "github.com/anonychun/siwi/internal/service/upload/handler"
 	"github.com/gin-gonic/gin"
 )
@@ -17,19 +16,18 @@ func NewRouter() (*gin.Engine, error) {
 	router.Use(gin.Recovery())
 	router.MaxMultipartMemory = 100000 << 20 // 100GB
 
-	tpl, err := tpl.LoadTemplate()
+	view := view.NewView(router)
+	template, err := view.LoadTemplate()
 	if err != nil {
 		return nil, err
 	}
-	router.SetHTMLTemplate(tpl)
+	router.SetHTMLTemplate(template)
 
 	uploadHandler := uploadHandler.NewUploadHTTPHandler()
 
 	router.GET("/", uploadHandler.Get())
 	router.POST("/upload", uploadHandler.Post())
-
 	router.StaticFS("/public", http.Dir(config.Config().DataPublic))
-	router.StaticFS("/static", rice.MustFindBox("../../../static").HTTPBox())
 
 	return router, nil
 }
