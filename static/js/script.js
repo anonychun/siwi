@@ -39,6 +39,7 @@ $("#uploadfile").on("submit", function (e) {
         </div>
       </div>`,
     footer: "<a href>Cancel</a>",
+    allowOutsideClick: false,
     showConfirmButton: false,
   });
 
@@ -59,11 +60,19 @@ $("#uploadfile").on("submit", function (e) {
     },
 
     success: function (data) {
+      // notifikasi success
       Swal.fire({
         title: "Success",
         text: "Files Uploaded Successfully!",
         type: "success",
-        showConfirmButton: false,
+        allowOutsideClick: false,
+        showConfirmButton: true,
+      }).then((result) => {
+        if (result.value) {
+          // clear value input
+          $(".file-input").val("");
+          $(".file-input").prev().text("or drag and drop files here");
+        }
       });
     },
   });
