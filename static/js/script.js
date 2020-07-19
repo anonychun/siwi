@@ -1,15 +1,15 @@
 var $fileInput = $(".file-input");
-var $droparea = $(".file-drop-area");
+// var $droparea = $(".file-drop-area");
 
 // highlight drag area
-$fileInput.on("dragenter focus click", function () {
-  $droparea.addClass("is-active");
-});
+// $fileInput.on("dragenter focus click", function () {
+//   $droparea.addClass("is-active");
+// });
 
-// back to normal state
-$fileInput.on("dragleave blur drop", function () {
-  $droparea.removeClass("is-active");
-});
+// // back to normal state
+// $fileInput.on("dragleave blur drop", function () {
+//   $droparea.removeClass("is-active");
+// });
 
 // change inner text
 $fileInput.on("change", function () {
@@ -88,3 +88,29 @@ function progress(e) {
     $(".percent").html(`${percentage.toFixed(2)}%`);
   }
 }
+
+// drag & drop everywhere
+let target = document.querySelector('html');
+let body = document.body;
+
+// drag over
+target.addEventListener('dragover', (e) => {
+  e.preventDefault();
+  console.log('dragover!');
+  body.classList.add('dragging');
+});
+
+// drag leave
+target.addEventListener('dragleave', () => {
+  body.classList.remove('dragging');
+  console.log('drag leave!');
+});
+
+// drop file
+target.addEventListener('drop', (e) => {
+  e.preventDefault();
+  body.classList.remove('dragging');
+  $fileInput[0].files = e.dataTransfer.files;
+  $(".file-input").trigger( "change" );
+});
+// end drag & drop everywhere

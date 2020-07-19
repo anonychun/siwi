@@ -194,3 +194,26 @@ section {
   color:white;
 }
 /*end progress bar*/
+
+/*dragging*/
+body.dragging::before {
+  content: "Drop the file(s) anywhere on this page";
+  position: fixed;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+  top: 0;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5em;
+  background-color: rgba(0, 0, 0, 0.84);
+  pointer-events: none;
+  z-index: 9999;
+}
+.dragging a{
+  pointer-events: none;
+  cursor: default;
+}
+/*end dragging*/
