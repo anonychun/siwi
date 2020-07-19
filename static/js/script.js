@@ -90,27 +90,27 @@ function progress(e) {
 }
 
 // drag & drop everywhere
-let target = document.querySelector('html');
+let target = document.querySelector("html");
 let body = document.body;
 
 // drag over
-target.addEventListener('dragover', (e) => {
+target.addEventListener("dragover", (e) => {
   e.preventDefault();
-  console.log('dragover!');
-  body.classList.add('dragging');
+  console.log("dragover!");
+  body.classList.add("dragging");
 });
 
 // drag leave
-target.addEventListener('dragleave', () => {
-  body.classList.remove('dragging');
-  console.log('drag leave!');
+target.addEventListener("dragleave", () => {
+  body.classList.remove("dragging");
+  console.log("drag leave!");
 });
 
 // drop file
-target.addEventListener('drop', (e) => {
+target.addEventListener("drop", (e) => {
   e.preventDefault();
-  body.classList.remove('dragging');
+  body.classList.remove("dragging");
   $fileInput[0].files = e.dataTransfer.files;
-  $(".file-input").trigger( "change" );
+  $(".file-input").trigger("change");
 });
 // end drag & drop everywhere
