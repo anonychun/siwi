@@ -1,0 +1,218 @@
+body {
+	display: -webkit-box;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	flex-direction: column;
+	-webkit-box-align: center;
+	align-items: center;
+	-webkit-box-pack: justify;
+	justify-content: space-between;
+	background: #022534;
+	color: #d7d7ef;
+	font-family: "Lato", sans-serif;
+}
+
+h2 {
+	margin: 50px 0;
+}
+
+section {
+	-webkit-box-flex: 1;
+	flex-grow: 1;
+}
+
+.file-drop-area {
+	position: relative;
+	display: -webkit-box;
+	display: flex;
+	-webkit-box-align: center;
+	align-items: center;
+	width: 90%;
+	max-width: 100%;
+	padding: 25px;
+	border: 1px dashed rgba(255, 255, 255, 0.4);
+	border-radius: 3px;
+	-webkit-transition: 0.2s;
+	transition: 0.2s;
+}
+
+.file-drop-area.is-active {
+	background-color: rgba(255, 255, 255, 0.05);
+}
+
+.fake-btn {
+	flex-shrink: 0;
+	background-color: rgba(255, 255, 255, 0.04);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	border-radius: 3px;
+	padding: 8px 15px;
+	margin-right: 10px;
+	font-size: 12px;
+	text-transform: uppercase;
+}
+
+.file-msg {
+	font-size: small;
+	font-weight: 300;
+	line-height: 1.4;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.file-input {
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	cursor: pointer;
+	opacity: 0;
+}
+
+.file-input:focus {
+	outline: none;
+}
+
+.btn-area {
+	align-items: center;
+	margin: auto;
+	text-align: center;
+}
+
+.btn {
+	border: none;
+	font-family: inherit;
+	font-size: inherit;
+	color: inherit;
+	background: none;
+	cursor: pointer;
+	padding: 25px 80px;
+	display: inline-block;
+	margin: 15px 30px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-weight: 700;
+	outline: none;
+	position: relative;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+	color: #ffff;
+	background: #226fbe;
+	-webkit-transition: none;
+	-moz-transition: none;
+	transition: none;
+	border: 4px solid #226fbe;
+	border-radius: 15px;
+}
+
+.btn:after {
+	content: "";
+	position: absolute;
+	z-index: -1;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+.btn:before {
+	font-family: "icomoon";
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	position: relative;
+	-webkit-font-smoothing: antialiased;
+}
+
+.btn:active {
+	top: 2px;
+}
+
+.btn:hover {
+	background: transparent;
+	color: #226fbe;
+}
+
+#cancel {
+	padding: 5px 22px;
+	margin: 22px 0px;
+	width: 16%;
+	border: 1px solid #cccccc;
+	float: right;
+	border-radius: 5px;
+	color: #ffffff;
+	font-size: 10pt;
+	background: #022534;
+}
+
+.proses {
+	padding: 12px 12px 12px 12px;
+	background: #073042;
+	border-radius: 6px;
+	border: 1px solid #cccccc;
+	margin-top: 25px;
+	width: 50%;
+}
+
+.proses h5 {
+	margin: 10px 0px 10px 0px;
+	text-align: center;
+	color: #fff;
+	padding: 0px 0px 17px 0px;
+}
+
+.progress {
+	margin: 0px auto;
+	padding: 0;
+	width: 100%;
+	height: 30px;
+	overflow: hidden;
+	background: #e5e5e5;
+	border-radius: 5px;
+	box-shadow: 0px 0px 5px #9a9a9a7d;
+}
+
+.bar {
+	position: relative;
+	float: left;
+	min-width: 1%;
+	height: 100%;
+	background: cornflowerblue;
+}
+
+.percent {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	margin: 0;
+	font-family: tahoma, arial, helvetica;
+	font-size: 12px;
+	color: white;
+}
+
+body.dragging::before {
+	content: "Drop the file(s) anywhere on this page";
+	position: fixed;
+	left: 0;
+	width: 100%;
+	box-sizing: border-box;
+	top: 0;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.5em;
+	background-color: rgba(0, 0, 0, 0.84);
+	pointer-events: none;
+	z-index: 9999;
+}
+
+.dragging a {
+	pointer-events: none;
+	cursor: default;
+}

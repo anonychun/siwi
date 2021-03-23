@@ -1,0 +1,35 @@
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, built with `go test -c`
+*.test
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
+
+# Generate from go.rice
+rice-box.go
+
+# Dependency directories
+vendor/
+
+# Data directories
+data/
+
+# Output directories
+_output/
+
+# Release directories
+release/
+
+# System
+.DS_Store
+dist/
+
+# Idea and editor
+.idea
+.vscode/
