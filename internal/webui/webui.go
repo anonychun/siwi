@@ -1,13 +1,16 @@
 package webui
 
 import (
+	"embed"
 	"html/template"
-	"os"
-	"strings"
+	"net/http"
+	"path"
 
-	rice "github.com/GeertJohan/go.rice"
 	"github.com/gin-gonic/gin"
 )
+
+//go:embed templates/* static/*
+var embedded embed.FS
 
 type WebUI interface {
 	LoadTemplate() (*template.Template, error)
@@ -22,37 +25,45 @@ func NewView(router *gin.Engine) WebUI {
 }
 
 func (webui *webui) LoadTemplate() (*template.Template, error) {
-	tpl := template.New("")
-	box, err := rice.FindBox("../../templates")
+	filenames, err := findTemplates("templates", &embedded)
 	if err != nil {
 		return nil, err
 	}
 
-	files, err := findTemplates(box)
+	tpl, err := template.ParseFS(embedded, filenames...)
 	if err != nil {
 		return nil, err
 	}
 
-	for _, name := range files {
-		tplString, err := box.String(name)
-		if err != nil {
-			return nil, err
-		}
-		tpl.New(name).Parse(tplString)
-	}
+	webui.router.StaticFS("/assets", http.FS(embedded))
+	webui.router.GET("/favicon.ico", func(c *gin.Context) {
+		c.Redirect(http.StatusMovedPermanently, "/assets/static/img/favicon.ico")
+	})
 
-	webui.router.StaticFS("/static", rice.MustFindBox("../../static").HTTPBox())
 	return tpl, nil
 }
 
-func findTemplates(box *rice.Box) ([]string, error) {
-	var files []string
-	err := box.Walk("", func(path string, info os.FileInfo, err error) error {
-		if strings.HasSuffix(path, ".html") {
-			files = append(files, path)
-		}
-		return err
-	})
+func findTemplates(root string, embedFS *embed.FS) ([]string, error) {
+	var filenames []string
+	entries, err := embedFS.ReadDir(root)
+	if err != nil {
+		return nil, err
+	}
 
-	return files, err
+	for _, entry := range entries {
+		entryPath := path.Join(root, entry.Name())
+		switch entry.IsDir() {
+		case true:
+			temp, err := findTemplates(entryPath, embedFS)
+			if err != nil {
+				return nil, err
+			}
+			filenames = append(filenames, temp...)
+		default:
+			filenames = append(filenames, entryPath)
+		}
+
+	}
+
+	return filenames, nil
 }

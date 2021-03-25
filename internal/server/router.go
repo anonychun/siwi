@@ -25,9 +25,6 @@ func NewRouter() (*gin.Engine, error) {
 	router.GET("/", appHandler.Index())
 	router.POST("/upload", appHandler.Upload())
 	router.StaticFS("/public", http.Dir(config.Config().DataPublic))
-	router.GET("/favicon.ico", func(c *gin.Context) {
-		c.Redirect(http.StatusMovedPermanently, "/static/img/favicon.ico")
-	})
 
 	return router, nil
 }

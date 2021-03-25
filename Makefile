@@ -9,26 +9,17 @@ BIN_DIR := $(OUT_DIR)/bin
 RELEASE_DIR := $(SRC_DIR)/release
 CONFIG_LOCATION := $(SRC_DIR)
 GO111MODULE := on
-VERSION := v0.1.0
+VERSION := v0.2.0
 
 $(@info $(shell mkdir -p $(OUT_DIR) $(BIN_DIR) $(RELEASE_DIR))
 
-install_requirements:
-	go get github.com/GeertJohan/go.rice
-	go get github.com/GeertJohan/go.rice/rice
-	go mod tidy
-
-dev: embed
+dev:
 	go run $(SRC_DIR)/main.go
 
-build: embed
+build:
 	go build -ldflags="-s -w" -o $(BIN_DIR)/siwi $(SRC_DIR)/main.go
 
-embed:
-	rm -f $(SRC_DIR)/internal/webui/rice-box.go
-	cd $(SRC_DIR)/internal/webui && rice embed-go
-
-compile: embed
+compile:
 	GOOS=linux GOARCH=386 go build -ldflags="-s -w" -o $(BIN_DIR)/linux_i386/siwi $(SRC_DIR)/main.go
 	GOOS=linux GOARCH=amd64 go build -ldflags="-s -w" -o $(BIN_DIR)/linux_x86_64/siwi $(SRC_DIR)/main.go
 	GOOS=darwin GOARCH=amd64 go build -ldflags="-s -w" -o $(BIN_DIR)/darwin_x86_64/siwi $(SRC_DIR)/main.go

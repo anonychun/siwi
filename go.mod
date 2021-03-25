@@ -1,10 +1,8 @@
 module github.com/anonychun/siwi
 
-go 1.14
+go 1.16
 
 require (
-	github.com/GeertJohan/go.rice v1.0.2
-	github.com/daaku/go.zipexe v1.0.1 // indirect
 	github.com/fsnotify/fsnotify v1.4.9 // indirect
 	github.com/gin-gonic/gin v1.6.3
 	github.com/go-playground/validator/v10 v10.4.1 // indirect
