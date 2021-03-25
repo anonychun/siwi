@@ -31,8 +31,8 @@ func Start() error {
 	}
 	defer conn.Close()
 
-	localIP := conn.LocalAddr().(*net.UDPAddr).IP
-	logger.Log().Info().Msgf("SIWI starting on \033[34m[%s%s]", localIP, httpServer.Addr)
+	ipAddr := conn.LocalAddr().(*net.UDPAddr).IP.String()
+	logger.Log().Info().Msgf("SIWI starting on \033[34m[%s%s]", ipAddr, httpServer.Addr)
 
 	idleConnsClosed := make(chan struct{})
 	go func() {
