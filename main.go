@@ -1,9 +1,9 @@
 package main
 
 import (
-	"github.com/anonychun/siwi/internal/directory"
-	"github.com/anonychun/siwi/internal/logger"
-	"github.com/anonychun/siwi/internal/server"
+	"github.com/anonychun/siwi/directory"
+	"github.com/anonychun/siwi/logger"
+	"github.com/anonychun/siwi/server"
 )
 
 func main() {

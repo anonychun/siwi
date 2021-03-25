@@ -11,14 +11,15 @@ CONFIG_LOCATION := $(SRC_DIR)
 GO111MODULE := on
 VERSION := v0.2.0
 
-$(@info $(shell mkdir -p $(OUT_DIR) $(BIN_DIR) $(RELEASE_DIR))
-
+.PHONY: dev
 dev:
 	go run $(SRC_DIR)/main.go
 
+.PHONY: build
 build:
 	go build -ldflags="-s -w" -o $(BIN_DIR)/siwi $(SRC_DIR)/main.go
 
+.PHONY: compile
 compile:
 	GOOS=linux GOARCH=386 go build -ldflags="-s -w" -o $(BIN_DIR)/linux_i386/siwi $(SRC_DIR)/main.go
 	GOOS=linux GOARCH=amd64 go build -ldflags="-s -w" -o $(BIN_DIR)/linux_x86_64/siwi $(SRC_DIR)/main.go
@@ -26,6 +27,7 @@ compile:
 	GOOS=windows GOARCH=386 go build -ldflags="-s -w" -o $(BIN_DIR)/windows_i386/siwi.exe $(SRC_DIR)/main.go
 	GOOS=windows GOARCH=amd64 go build -ldflags="-s -w" -o $(BIN_DIR)/windows_x86_64/siwi.exe $(SRC_DIR)/main.go
 
+.PHONY: release
 release: compile
 	mkdir -p $(RELEASE_DIR)
 	rm -f $(RELEASE_DIR)/*

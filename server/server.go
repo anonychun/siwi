@@ -9,8 +9,8 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/anonychun/siwi/internal/config"
-	"github.com/anonychun/siwi/internal/logger"
+	"github.com/anonychun/siwi/config"
+	"github.com/anonychun/siwi/logger"
 	"github.com/gin-gonic/gin"
 )
 

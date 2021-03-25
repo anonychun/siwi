@@ -3,9 +3,9 @@ package server
 import (
 	"net/http"
 
-	"github.com/anonychun/siwi/internal/config"
-	"github.com/anonychun/siwi/internal/handler"
-	"github.com/anonychun/siwi/internal/webui"
+	"github.com/anonychun/siwi/config"
+	"github.com/anonychun/siwi/handler"
+	"github.com/anonychun/siwi/webui"
 	"github.com/gin-gonic/gin"
 )
 

@@ -3,7 +3,7 @@ package directory
 import (
 	"os"
 
-	"github.com/anonychun/siwi/internal/config"
+	"github.com/anonychun/siwi/config"
 )
 
 func Setup() error {
