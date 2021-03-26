@@ -25,13 +25,18 @@ func Start() error {
 		Handler: router,
 	}
 
+	var ipAddr string
 	conn, err := net.Dial("udp", "8.8.8.8:80")
-	if err != nil && config.Config().AppLevel == gin.ReleaseMode {
+	switch {
+	case err != nil && config.Config().AppLevel == gin.ReleaseMode:
 		return err
+	case err != nil && config.Config().AppLevel == gin.DebugMode:
+		ipAddr = "127.0.0.1"
+	case err == nil:
+		ipAddr = conn.LocalAddr().(*net.UDPAddr).IP.String()
+		defer conn.Close()
 	}
-	defer conn.Close()
 
-	ipAddr := conn.LocalAddr().(*net.UDPAddr).IP.String()
 	logger.Log().Info().Msgf("SIWI starting on \033[34m[%s%s]", ipAddr, httpServer.Addr)
 
 	idleConnsClosed := make(chan struct{})
