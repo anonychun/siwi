@@ -37,7 +37,10 @@ func Start() error {
 		defer conn.Close()
 	}
 
-	logger.Log().Info().Msgf("SIWI starting on \033[34m[%s%s]", ipAddr, httpServer.Addr)
+	logger.Log().Info().Msgf(
+		"SIWI starting on \033[34m[%s%s]\033[0m",
+		ipAddr, httpServer.Addr,
+	)
 
 	idleConnsClosed := make(chan struct{})
 	go func() {
