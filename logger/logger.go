@@ -3,7 +3,6 @@ package logger
 import (
 	"os"
 	"sync"
-	"time"
 
 	"github.com/rs/zerolog"
 )
@@ -13,10 +12,7 @@ var logger zerolog.Logger
 
 func Log() *zerolog.Logger {
 	once.Do(func() {
-		logger = zerolog.New(zerolog.ConsoleWriter{
-			Out:        os.Stdout,
-			TimeFormat: time.Kitchen,
-		}).With().Timestamp().Logger().Level(zerolog.InfoLevel)
+		logger = zerolog.New(os.Stdout)
 	})
 	return &logger
 }

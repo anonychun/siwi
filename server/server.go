@@ -38,7 +38,7 @@ func Start() error {
 	}
 
 	logger.Log().Info().Msgf(
-		"SIWI starting on \033[34m[%s%s]\033[0m",
+		"SIWI starting on [%s%s]",
 		ipAddr, httpServer.Addr,
 	)
 
