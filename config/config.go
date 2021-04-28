@@ -19,17 +19,18 @@ func getIntDefault(v *viper.Viper, key string, value int) int {
 	return v.GetInt(key)
 }
 
-var once sync.Once
-var config *AppConfig
+type Config struct {
+	AppLevel string
+	AppPort  int
 
-type AppConfig struct {
-	AppLevel   string
-	AppPort    int
 	DataUpload string
 	DataPublic string
 }
 
-func load() *AppConfig {
+var once sync.Once
+var config Config
+
+func load() Config {
 	fang := viper.New()
 	fang.AutomaticEnv()
 
@@ -45,7 +46,7 @@ func load() *AppConfig {
 	_ = fang.ReadInConfig()
 	homeDir, _ := os.UserHomeDir()
 
-	return &AppConfig{
+	return Config{
 		AppLevel:   getStringDefault(fang, "app.level", gin.ReleaseMode),
 		AppPort:    getIntDefault(fang, "app.port", 1427),
 		DataUpload: path.Join(homeDir, "Documents/siwi/upload"),
@@ -53,10 +54,9 @@ func load() *AppConfig {
 	}
 }
 
-func Config() *AppConfig {
+func Cfg() *Config {
 	once.Do(func() {
 		config = load()
 	})
-
-	return config
+	return &config
 }

@@ -11,8 +11,8 @@ CONFIG_LOCATION := $(SRC_DIR)
 GO111MODULE := on
 VERSION := v0.2.2
 
-.PHONY: dev
-dev:
+.PHONY: run
+run:
 	go run $(SRC_DIR)/main.go
 
 .PHONY: build

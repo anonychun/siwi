@@ -21,16 +21,16 @@ func Start() error {
 	}
 
 	httpServer := &http.Server{
-		Addr:    fmt.Sprintf(":%d", config.Config().AppPort),
+		Addr:    fmt.Sprintf(":%d", config.Cfg().AppPort),
 		Handler: router,
 	}
 
 	var ipAddr string
 	conn, err := net.Dial("udp", "8.8.8.8:80")
 	switch {
-	case err != nil && config.Config().AppLevel == gin.ReleaseMode:
+	case err != nil && config.Cfg().AppLevel == gin.ReleaseMode:
 		return err
-	case err != nil && config.Config().AppLevel == gin.DebugMode:
+	case err != nil && config.Cfg().AppLevel == gin.DebugMode:
 		ipAddr = "127.0.0.1"
 	case err == nil:
 		ipAddr = conn.LocalAddr().(*net.UDPAddr).IP.String()

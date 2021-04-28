@@ -10,7 +10,7 @@ import (
 )
 
 func NewRouter() (*gin.Engine, error) {
-	gin.SetMode(config.Config().AppLevel)
+	gin.SetMode(config.Cfg().AppLevel)
 	router := gin.New()
 	router.Use(gin.Recovery())
 
@@ -24,7 +24,7 @@ func NewRouter() (*gin.Engine, error) {
 
 	router.GET("/", appHandler.Index())
 	router.POST("/upload", appHandler.Upload())
-	router.StaticFS("/public", http.Dir(config.Config().DataPublic))
+	router.StaticFS("/public", http.Dir(config.Cfg().DataPublic))
 
 	return router, nil
 }

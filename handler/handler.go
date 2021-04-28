@@ -45,7 +45,7 @@ func (appHandler) Upload() gin.HandlerFunc {
 		for _, file := range files {
 			go func(file *multipart.FileHeader) {
 				defer wg.Done()
-				c.SaveUploadedFile(file, path.Join(config.Config().DataUpload, file.Filename))
+				c.SaveUploadedFile(file, path.Join(config.Cfg().DataUpload, file.Filename))
 				logger.Log().Info().Msgf("%s uploaded: %s", clientIP, file.Filename)
 			}(file)
 		}

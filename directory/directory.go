@@ -8,8 +8,8 @@ import (
 
 func Setup() error {
 	for _, dir := range []string{
-		config.Config().DataUpload,
-		config.Config().DataPublic,
+		config.Cfg().DataUpload,
+		config.Cfg().DataPublic,
 	} {
 		err := os.MkdirAll(dir, os.ModePerm)
 		if err != nil {
