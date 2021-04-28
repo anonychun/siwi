@@ -14,6 +14,6 @@ func main() {
 
 	err = server.Start()
 	if err != nil {
-		logger.Log().Err(err).Msg("failed to run server")
+		logger.Log().Err(err).Msg("failed to start server")
 	}
 }
