@@ -25,6 +25,20 @@ func Start() error {
 		Handler: router,
 	}
 
+	idleConnsClosed := make(chan struct{})
+	go func() {
+		sigint := make(chan os.Signal, 1)
+		signal.Notify(sigint, os.Interrupt)
+		signal.Notify(sigint, syscall.SIGTERM)
+
+		<-sigint
+
+		err := httpServer.Shutdown(context.Background())
+		if err != nil {
+			logger.Log().Err(err).Msg("received an interrupt signal")
+		}
+	}()
+
 	var ipAddr string
 	conn, err := net.Dial("udp", "8.8.8.8:80")
 	switch {
@@ -42,24 +56,14 @@ func Start() error {
 		ipAddr, httpServer.Addr,
 	)
 
-	idleConnsClosed := make(chan struct{})
-	go func() {
-		sigint := make(chan os.Signal, 1)
-		signal.Notify(sigint, os.Interrupt)
-		signal.Notify(sigint, syscall.SIGTERM)
-
-		<-sigint
-
-		err := httpServer.Shutdown(context.Background())
-		if err != nil {
-			logger.Log().Err(err).Msg("received an interrupt signal")
-		}
-	}()
-
 	err = httpServer.ListenAndServe()
 	if err != nil {
-		close(idleConnsClosed)
-		return err
+		switch err {
+		case http.ErrServerClosed:
+			close(idleConnsClosed)
+		default:
+			return err
+		}
 	}
 
 	<-idleConnsClosed
