@@ -27,6 +27,8 @@ func Start() error {
 
 	idleConnsClosed := make(chan struct{})
 	go func() {
+		defer close(idleConnsClosed)
+
 		sigint := make(chan os.Signal, 1)
 		signal.Notify(sigint, os.Interrupt)
 		signal.Notify(sigint, syscall.SIGTERM)
@@ -35,7 +37,7 @@ func Start() error {
 
 		err := httpServer.Shutdown(context.Background())
 		if err != nil {
-			logger.Log().Err(err).Msg("received an interrupt signal")
+			logger.Log().Err(err).Msg("failed to shutdown server")
 		}
 	}()
 
@@ -57,13 +59,8 @@ func Start() error {
 	)
 
 	err = httpServer.ListenAndServe()
-	if err != nil {
-		switch err {
-		case http.ErrServerClosed:
-			close(idleConnsClosed)
-		default:
-			return err
-		}
+	if err != nil && err != http.ErrServerClosed {
+		return err
 	}
 
 	<-idleConnsClosed
