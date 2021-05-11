@@ -3,7 +3,6 @@ package config
 import (
 	"os"
 	"path"
-	"sync"
 
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
@@ -26,9 +25,6 @@ type Config struct {
 	DataUpload string
 	DataPublic string
 }
-
-var once sync.Once
-var config Config
 
 func load() Config {
 	fang := viper.New()
@@ -54,9 +50,6 @@ func load() Config {
 	}
 }
 
-func Cfg() *Config {
-	once.Do(func() {
-		config = load()
-	})
-	return &config
-}
+var config = load()
+
+func Cfg() *Config { return &config }
