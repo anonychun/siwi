@@ -67,7 +67,7 @@ $("#uploadfile").on("submit", function (e) {
 			}).then((result) => {
 				if (result.value) {
 					$(".file-input").val("");
-					$(".file-input").prev().text("or drag and drop files here");
+					$(".file-input").prev().text("Browse Files");
 				}
 			});
 		},
