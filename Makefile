@@ -9,7 +9,7 @@ BIN_DIR := $(OUT_DIR)/bin
 RELEASE_DIR := $(SRC_DIR)/release
 CONFIG_LOCATION := $(SRC_DIR)
 GO111MODULE := on
-VERSION := v0.2.5
+VERSION := v0.2.6
 
 .PHONY: run
 run:
